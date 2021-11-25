@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import by.godevelopment.lastadapterlearn.BR
 import by.godevelopment.lastadapterlearn.R
+import by.godevelopment.lastadapterlearn.databinding.MainFragmentBinding
+import com.github.nitrico.lastadapter.LastAdapter
 
 class MainFragment : Fragment() {
 
@@ -20,13 +23,16 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
-    }
+        val binding = MainFragmentBinding.inflate(inflater, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+        binding.viewModel = viewModel
 
+        LastAdapter(viewModel.data, BR.viewModel)
+            .map<ItemViewModel>(R.layout.item)
+            .map<HeaderViewModel>(R.layout.item_header)
+            .into(binding.recyclerView)
+
+        return binding.root
+    }
 }

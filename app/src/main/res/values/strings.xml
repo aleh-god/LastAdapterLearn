@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LastAdapterLearn</string>
+    <string name="order_price">Order price: %.2f</string>
+    <string name="btn_add">Add</string>
 </resources>

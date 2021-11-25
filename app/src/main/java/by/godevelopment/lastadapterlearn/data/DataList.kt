@@ -1,11 +1,10 @@
 package by.godevelopment.lastadapterlearn.data
 
-import androidx.databinding.ObservableArrayList
 import by.godevelopment.lastadapterlearn.model.Header
 import by.godevelopment.lastadapterlearn.model.Item
 
 object DataList {
-    val items = ObservableArrayList<Any>().apply {
+    val items = ArrayList<Any>().apply {
         add(Header("Овощи"))
         add(Item("Картофель", 1.1F))
         add(Item("Капуста", 2.2F))
